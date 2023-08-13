@@ -7,7 +7,7 @@ namespace ByteBanter.Models
     public class Blog
     {
         public int Id { get; set; }
-        public string AuthorId { get; set; }
+        public string BlogUserId { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at most {1} characters", MinimumLength = 2)]
@@ -36,7 +36,7 @@ namespace ByteBanter.Models
 
         //Navigation Properties
         //Blog is a child to the Author, Author is the type of BlogUser
-        public virtual BlogUser Author { get; set; }
+        public virtual BlogUser BlogUser { get; set; }
 
         //Blog is the parent to Post, so we initialize a collection of Posts
         public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
