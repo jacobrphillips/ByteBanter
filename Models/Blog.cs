@@ -36,7 +36,7 @@ namespace ByteBanter.Models
 
         //Navigation Properties
         //Blog is a child to the Author, Author is the type of BlogUser
-        public virtual BlogUser BlogUser { get; set; }
+        public virtual BlogUser? BlogUser { get; set; }
 
         //Blog is the parent to Post, so we initialize a collection of Posts
         public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();

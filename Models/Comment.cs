@@ -38,8 +38,8 @@ namespace ByteBanter.Models
 
         //Navigation Properties
         //Comment is the child of Post, Author, and Moderator
-        public virtual Post Post { get; set; }
-        public virtual BlogUser BlogUser { get; set; }
-        public virtual BlogUser Moderator { get; set; }
+        public virtual Post? Post { get; set; }
+        public virtual BlogUser? BlogUser { get; set; }
+        public virtual BlogUser? Moderator { get; set; }
     }
 }
