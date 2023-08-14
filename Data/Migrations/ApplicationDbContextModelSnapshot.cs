@@ -31,11 +31,9 @@ namespace ByteBanter.Data.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BlogUserId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ContentType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
@@ -47,7 +45,6 @@ namespace ByteBanter.Data.Migrations
                         .HasColumnType("character varying(500)");
 
                     b.Property<byte[]>("ImageData")
-                        .IsRequired()
                         .HasColumnType("bytea");
 
                     b.Property<string>("Name")
@@ -183,11 +180,10 @@ namespace ByteBanter.Data.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ModeratedBody")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
-                    b.Property<int>("ModerationType")
+                    b.Property<int?>("ModerationType")
                         .HasColumnType("integer");
 
                     b.Property<string>("ModeratorId")
@@ -234,21 +230,18 @@ namespace ByteBanter.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ContentType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<byte[]>("ImageData")
-                        .IsRequired()
                         .HasColumnType("bytea");
 
-                    b.Property<int>("ReadyStatus")
+                    b.Property<int?>("ReadyStatus")
                         .HasColumnType("integer");
 
                     b.Property<string>("Slug")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
@@ -432,9 +425,7 @@ namespace ByteBanter.Data.Migrations
                 {
                     b.HasOne("ByteBanter.Models.BlogUser", "BlogUser")
                         .WithMany("Blogs")
-                        .HasForeignKey("BlogUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogUserId");
 
                     b.Navigation("BlogUser");
                 });

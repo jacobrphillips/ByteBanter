@@ -8,7 +8,7 @@ namespace ByteBanter.Models
     public class Blog
     {
         public int Id { get; set; }
-        public string BlogUserId { get; set; }
+        public string? BlogUserId { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at most {1} characters", MinimumLength = 2)]
@@ -27,10 +27,10 @@ namespace ByteBanter.Models
         public DateTime? Updated { get; set; }
 
         [Display(Name = "Blog Image")]
-        public byte[] ImageData { get; set; }
+        public byte[]? ImageData { get; set; }
 
         [Display(Name = "Image Type")]
-        public string ContentType { get; set; }
+        public string? ContentType { get; set; }
 
         [NotMapped]
         public IFormFile Image { get; set; }

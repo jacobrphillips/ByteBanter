@@ -31,21 +31,21 @@ namespace ByteBanter.Models
         [Display(Name = "Updated Date")]
         public DateTime? Updated { get; set; }
 
-        public ReadyStatus ReadyStatus { get; set; }
+        public ReadyStatus? ReadyStatus { get; set; }
 
-        public string Slug { get; set; }
+        public string? Slug { get; set; }
 
-        public byte[] ImageData { get; set; }
+        public byte[]? ImageData { get; set; }
 
-        public string ContentType { get; set; }
+        public string? ContentType { get; set; }
 
         [NotMapped]
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
 
         //Navigation Properties
         //Post is a child to both Blog and Author via their IDs
-        public virtual Blog Blog { get; set; }
-        public virtual BlogUser BlogUser { get; set; }
+        public virtual Blog? Blog { get; set; }
+        public virtual BlogUser? BlogUser { get; set; }
 
         //Post is a parent to Tag and Comment, so we initialize a collection of Tags and Comments
         public virtual ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();

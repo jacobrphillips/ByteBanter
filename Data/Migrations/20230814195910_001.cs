@@ -169,13 +169,13 @@ namespace ByteBanter.Data.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    BlogUserId = table.Column<string>(type: "text", nullable: false),
+                    BlogUserId = table.Column<string>(type: "text", nullable: true),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    ImageData = table.Column<byte[]>(type: "bytea", nullable: false),
-                    ContentType = table.Column<string>(type: "text", nullable: false)
+                    ImageData = table.Column<byte[]>(type: "bytea", nullable: true),
+                    ContentType = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -184,8 +184,7 @@ namespace ByteBanter.Data.Migrations
                         name: "FK_Blogs_AspNetUsers_BlogUserId",
                         column: x => x.BlogUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -201,10 +200,10 @@ namespace ByteBanter.Data.Migrations
                     Content = table.Column<string>(type: "text", nullable: false),
                     Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    ReadyStatus = table.Column<int>(type: "integer", nullable: false),
-                    Slug = table.Column<string>(type: "text", nullable: false),
-                    ImageData = table.Column<byte[]>(type: "bytea", nullable: false),
-                    ContentType = table.Column<string>(type: "text", nullable: false)
+                    ReadyStatus = table.Column<int>(type: "integer", nullable: true),
+                    Slug = table.Column<string>(type: "text", nullable: true),
+                    ImageData = table.Column<byte[]>(type: "bytea", nullable: true),
+                    ContentType = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -235,8 +234,8 @@ namespace ByteBanter.Data.Migrations
                     Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Moderated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Deleted = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    ModeratedBody = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    ModerationType = table.Column<int>(type: "integer", nullable: false)
+                    ModeratedBody = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    ModerationType = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {

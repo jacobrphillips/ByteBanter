@@ -32,14 +32,14 @@ namespace ByteBanter.Models
 
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} and no more than {1} characters long", MinimumLength = 2)]
         [Display(Name = "Moderated Comment")]
-        public string ModeratedBody { get; set; }
+        public string? ModeratedBody { get; set; }
 
-        public ModerationType ModerationType { get; set; }
+        public ModerationType? ModerationType { get; set; }
 
         //Navigation Properties
         //Comment is the child of Post, Author, and Moderator
-        public virtual Post Post { get; set; }
-        public virtual BlogUser BlogUser { get; set; }
-        public virtual BlogUser Moderator { get; set; }
+        public virtual Post? Post { get; set; }
+        public virtual BlogUser? BlogUser { get; set; }
+        public virtual BlogUser? Moderator { get; set; }
     }
 }
