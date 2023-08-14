@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -36,6 +37,8 @@ namespace ByteBanter.Models
 
         //Navigation Properties
         //Blog is a child to the Author, Author is the type of BlogUser
+
+        [Display(Name = "Author")]
         public virtual BlogUser? BlogUser { get; set; }
 
         //Blog is the parent to Post, so we initialize a collection of Posts
