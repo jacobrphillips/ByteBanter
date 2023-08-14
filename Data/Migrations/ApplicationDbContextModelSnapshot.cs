@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ByteBanter.Data.Migrations
+namespace ByteBanter.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -167,7 +167,6 @@ namespace ByteBanter.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("BlogUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Body")
@@ -193,7 +192,6 @@ namespace ByteBanter.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ModeratorId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("PostId")
@@ -226,11 +224,10 @@ namespace ByteBanter.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("BlogId")
+                    b.Property<int?>("BlogId")
                         .HasColumnType("int");
 
                     b.Property<string>("BlogUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
@@ -281,10 +278,9 @@ namespace ByteBanter.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("BlogUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("PostId")
+                    b.Property<int?>("PostId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -449,15 +445,11 @@ namespace ByteBanter.Data.Migrations
                 {
                     b.HasOne("ByteBanter.Models.BlogUser", "BlogUser")
                         .WithMany()
-                        .HasForeignKey("BlogUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogUserId");
 
                     b.HasOne("ByteBanter.Models.BlogUser", "Moderator")
                         .WithMany()
-                        .HasForeignKey("ModeratorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModeratorId");
 
                     b.HasOne("ByteBanter.Models.Post", "Post")
                         .WithMany("Comments")
@@ -476,15 +468,11 @@ namespace ByteBanter.Data.Migrations
                 {
                     b.HasOne("ByteBanter.Models.Blog", "Blog")
                         .WithMany("Posts")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogId");
 
                     b.HasOne("ByteBanter.Models.BlogUser", "BlogUser")
                         .WithMany("Posts")
-                        .HasForeignKey("BlogUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogUserId");
 
                     b.Navigation("Blog");
 
@@ -495,15 +483,11 @@ namespace ByteBanter.Data.Migrations
                 {
                     b.HasOne("ByteBanter.Models.BlogUser", "BlogUser")
                         .WithMany()
-                        .HasForeignKey("BlogUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogUserId");
 
                     b.HasOne("ByteBanter.Models.Post", "Post")
                         .WithMany("Tags")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PostId");
 
                     b.Navigation("BlogUser");
 
