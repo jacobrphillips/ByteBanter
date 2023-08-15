@@ -29,6 +29,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+            var dateCreated = item.Created.ToLocalTime();
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -37,7 +38,8 @@
                 @Html.DisplayFor(modelItem => item.Abstract)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Created)
+                  
+                @Html.DisplayFor(modelItem => dateCreated)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ReadyStatus)
