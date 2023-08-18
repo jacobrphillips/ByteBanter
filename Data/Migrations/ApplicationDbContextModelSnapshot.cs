@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace ByteBanter.Data.Migrations
+namespace ByteBanter.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -75,7 +75,6 @@ namespace ByteBanter.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ContentType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
@@ -91,12 +90,10 @@ namespace ByteBanter.Data.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.Property<string>("GitHubUrl")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
                     b.Property<byte[]>("ImageData")
-                        .IsRequired()
                         .HasColumnType("bytea");
 
                     b.Property<string>("LastName")
@@ -105,7 +102,6 @@ namespace ByteBanter.Data.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.Property<string>("LinkedInUrl")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 

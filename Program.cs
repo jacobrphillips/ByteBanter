@@ -1,5 +1,6 @@
 using ByteBanter.Data;
 using ByteBanter.Models;
+using ByteBanter.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Build.Execution;
 using Microsoft.EntityFrameworkCore;
@@ -9,17 +10,12 @@ namespace ByteBanter
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
-            //USES MSSQL
-            //builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(connectionString));
-
 
             //USES POSTGRESQL
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -42,7 +38,18 @@ namespace ByteBanter
 
             builder.Services.AddRazorPages();
 
+            //Register my custom DataService class
+            builder.Services.AddScoped<DataService>();
+
+         
             var app = builder.Build();
+
+            // Activate your DataService
+            using (var scope = app.Services.CreateScope())
+            {
+                var dataService = scope.ServiceProvider.GetRequiredService<DataService>();
+                await dataService.ManageDataAsync();
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
