@@ -1,6 +1,7 @@
 using ByteBanter.Data;
 using ByteBanter.Models;
 using ByteBanter.Services;
+using ByteBanter.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Build.Execution;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +42,11 @@ namespace ByteBanter
             //Register my custom DataService class
             builder.Services.AddScoped<DataService>();
 
+            //Register a preconfigured instance of the MailSettings class
+            builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+
+            //Register BlogEmail service 
+            builder.Services.AddScoped<IBlogEmailSender, EmailService>();
          
             var app = builder.Build();
 
