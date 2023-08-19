@@ -4,11 +4,12 @@
 @model IEnumerable<ByteBanter.Models.Blog>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Blog Index";
 }
 
-<h1>Index</h1>
-
+<div class="container">
+    <h1 class="mt-4">Index</h1>
+    <div class="row">
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -49,7 +50,7 @@
                     @Html.DisplayFor(modelItem => blog.Updated)
             </td>
             <td>
-                    <img src="@imageService.DecodeImage(blog.ImageData, blog.ContentType)"/>
+                    <img class="img-fluid" width="200px;" src="@imageService.DecodeImage(blog.ImageData, blog.ContentType)"/>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@blog.Id">Edit</a> |
@@ -60,3 +61,5 @@
 }
     </tbody>
 </table>
+    </div>
+</div>

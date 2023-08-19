@@ -33,7 +33,7 @@ namespace ByteBanter.Models
         public string? ContentType { get; set; }
 
         [NotMapped]
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
 
         //Navigation Properties
         //Blog is a child to the Author, Author is the type of BlogUser
