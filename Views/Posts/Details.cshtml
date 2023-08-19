@@ -1,4 +1,8 @@
-﻿@model ByteBanter.Models.Post
+﻿@using ByteBanter.Services;
+
+@inject IImageService imageService
+
+@model ByteBanter.Models.Post
 
 @{
     ViewData["Title"] = @Html.DisplayFor(model => model.Title);
@@ -22,13 +26,17 @@
                     }
                 </header>
                 <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="@Model.ImageData" alt="..." /></figure>
+                <figure class="mb-4"><img class="img-fluid rounded" src="@imageService.DecodeImage(Model.ImageData, Model.ContentType)" alt="..." /></figure>
                 <!-- Post content-->
                 <abstract>@Html.Raw(Model.Abstract)</abstract>
                 <section class="mb-5">
                     @Html.Raw(Model.Content)
                 </section>
             </article>
+
+
+
+
             <!-- Comments section-->
             <section class="mb-5">
                 <div class="card bg-light">
