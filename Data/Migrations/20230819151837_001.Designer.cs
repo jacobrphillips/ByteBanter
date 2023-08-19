@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ByteBanter.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230817170455_001")]
+    [Migration("20230819151837_001")]
     partial class _001
     {
         /// <inheritdoc />
@@ -79,6 +79,11 @@ namespace ByteBanter.Migrations
 
                     b.Property<string>("ContentType")
                         .HasColumnType("text");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
