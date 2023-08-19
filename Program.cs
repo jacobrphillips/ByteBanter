@@ -45,6 +45,9 @@ namespace ByteBanter
             //Register a preconfigured instance of the MailSettings class
             builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
+            //Register Image service
+            builder.Services.AddScoped<IImageService, BasicImageService>();
+
             //Register BlogEmail service 
             builder.Services.AddScoped<IBlogEmailSender, EmailService>();
          
