@@ -5,7 +5,7 @@ using ByteBanter.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Build.Execution;
 using Microsoft.EntityFrameworkCore;
-
+using TheBlogProject.Services;
 
 namespace ByteBanter
 {
@@ -50,7 +50,10 @@ namespace ByteBanter
 
             //Register BlogEmail service 
             builder.Services.AddScoped<IBlogEmailSender, EmailService>();
-         
+
+            //Register Slug Service
+            builder.Services.AddScoped<ISlugService, BasicSlugService>();
+
             var app = builder.Build();
 
             // Activate your DataService
