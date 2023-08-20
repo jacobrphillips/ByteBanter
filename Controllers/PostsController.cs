@@ -9,6 +9,8 @@ using ByteBanter.Data;
 using ByteBanter.Models;
 using ByteBanter.Services;
 using Microsoft.AspNetCore.Identity;
+using ByteBanter.Enums;
+using X.PagedList;
 
 namespace ByteBanter.Controllers
 {
@@ -32,6 +34,23 @@ namespace ByteBanter.Controllers
         {
             var applicationDbContext = _context.Posts.Include(p => p.Blog).Include(p => p.BlogUser);
             return View(await applicationDbContext.ToListAsync());
+        }
+
+        //BlogPostIndex
+        public async Task<IActionResult> BlogPostIndex(int? id, int? page)
+        {
+            if(id is null)
+            {
+                return NotFound();
+            }
+
+            var pageNumber = page ?? 1;
+            var pageSize = 5;
+
+            var posts = await _context.Posts.Where(p => p.BlogId == id && p.ReadyStatus == ReadyStatus.ProductionReady).OrderByDescending(p => p.Created)
+                .ToPagedListAsync(pageNumber, pageSize);
+
+            return View(posts);
         }
 
         // GET: Posts/Details/5

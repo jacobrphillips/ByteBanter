@@ -1,4 +1,11 @@
-﻿@{
+﻿@using ByteBanter.Models
+@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+
+@model IPagedList<Blog>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -11,3 +18,44 @@
         </div>
     </div>
 </header>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            @foreach (var blog in Model)
+            {
+             <div class="post-preview">
+                 <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@blog.Id">
+                     <h2 class="post-title">@blog.Name</h2>
+                     <h3 class="post-subtitle">@blog.Description</h3>
+                 </a>
+                 <p class="post-meta">
+                     Authored by
+                     <a>@blog.BlogUser.DisplayName</a>
+                     on @blog.Created.ToString("MMM dd, yyyy")
+                 </p>
+             </div>
+            }
+            <div class="clearfix">
+                <a class="btn btn-primary float-right">Older Posts &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Add Paging Controls here-->
+<div class="row">
+    <div class="col h5">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+            new PagedListRenderOptionsBase
+            {
+                LiElementClasses = new string[] {"page-item"},
+                PageClasses = new string[] {"page-link"} 
+            });
+    </div>
+</div>
