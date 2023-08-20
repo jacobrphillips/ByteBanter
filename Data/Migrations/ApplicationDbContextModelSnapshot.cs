@@ -220,7 +220,7 @@ namespace ByteBanter.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.Property<int?>("BlogId")
+                    b.Property<int>("BlogId")
                         .HasColumnType("integer");
 
                     b.Property<string>("BlogUserId")
@@ -273,7 +273,7 @@ namespace ByteBanter.Migrations
                     b.Property<string>("BlogUserId")
                         .HasColumnType("text");
 
-                    b.Property<int?>("PostId")
+                    b.Property<int>("PostId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Text")
@@ -458,7 +458,9 @@ namespace ByteBanter.Migrations
                 {
                     b.HasOne("ByteBanter.Models.Blog", "Blog")
                         .WithMany("Posts")
-                        .HasForeignKey("BlogId");
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ByteBanter.Models.BlogUser", "BlogUser")
                         .WithMany("Posts")
@@ -477,7 +479,9 @@ namespace ByteBanter.Migrations
 
                     b.HasOne("ByteBanter.Models.Post", "Post")
                         .WithMany("Tags")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("BlogUser");
 

@@ -38,15 +38,43 @@
                 </div>
                 <br />
                 <div class="form-group">
-                    <label asp-for="ReadyStatus" class="control-label"></label>
-                    <select asp-for="ReadyStatus" class="form-control" asp-items="Html.GetEnumSelectList<ReadyStatus>()"></select>
-                    <span asp-validation-for="ReadyStatus" class="text-danger"></span>
+                    <div class="row">
+                        <div class="col">
+                            <label class="control-label">Manage Tags</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control mb-3" id="TagEntry" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button onclick="AddTag()" name="Add" type="button" class="btn btn-dark btn-sm w-100">Add</button>
+                                </div>
+                                <div class="col-6">
+                                    <button onclick="DeleteTag()" name="Delete" type="button" class="btn btn-dark btn-sm w-100">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <select class="w-100" name="TagValues" id="TagList" multiple></select>
+                        </div>
+                    </div>
                 </div>
                 <br />
                 <div class="form-group">
                     <label asp-for="Image" class="control-label"></label>
                     <input type="file" name="NewImage" class="form-control" />
                     <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="ReadyStatus" class="control-label"></label>
+                    <select asp-for="ReadyStatus" class="form-control" asp-items="Html.GetEnumSelectList<ReadyStatus>()"></select>
+                    <span asp-validation-for="ReadyStatus" class="text-danger"></span>
                 </div>
                 <br />
                 <div class="form-group">
@@ -62,13 +90,17 @@
 </div>
 
 @section Scripts {
+
+    
+
     <script>
+
+        let tagValues = '@ViewData["TagValues"]';
+
         $(document).ready(function () {
             $('#summernote').summernote();
         });
     </script>
 
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <script src="~/js/Custom.js"></script>
 }

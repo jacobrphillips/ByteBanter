@@ -194,7 +194,7 @@ namespace ByteBanter.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    BlogId = table.Column<int>(type: "integer", nullable: true),
+                    BlogId = table.Column<int>(type: "integer", nullable: false),
                     BlogUserId = table.Column<string>(type: "text", nullable: true),
                     Title = table.Column<string>(type: "character varying(75)", maxLength: 75, nullable: false),
                     Abstract = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
@@ -218,7 +218,8 @@ namespace ByteBanter.Migrations
                         name: "FK_Posts_Blogs_BlogId",
                         column: x => x.BlogId,
                         principalTable: "Blogs",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -265,7 +266,7 @@ namespace ByteBanter.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PostId = table.Column<int>(type: "integer", nullable: true),
+                    PostId = table.Column<int>(type: "integer", nullable: false),
                     BlogUserId = table.Column<string>(type: "text", nullable: true),
                     Text = table.Column<string>(type: "character varying(25)", maxLength: 25, nullable: false)
                 },
@@ -281,7 +282,8 @@ namespace ByteBanter.Migrations
                         name: "FK_Tags_Posts_PostId",
                         column: x => x.PostId,
                         principalTable: "Posts",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

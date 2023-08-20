@@ -62,7 +62,7 @@ namespace ByteBanter.Services
                 UserName = "0123phillips@gmail.com",
                 FirstName = "Jacob",
                 LastName = "Phillips",
-                DisplayName = "Jacob",
+                DisplayName = "Jacob 'JP' Phillips",
                 EmailConfirmed = true
             };
 

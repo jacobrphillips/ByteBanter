@@ -18,12 +18,14 @@
                     <!-- Post title-->
                     <h1 class="fw-bolder mb-1">@Html.DisplayFor(model => model.Title)</h1>
                     <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">Posted on @Html.DisplayFor(model => model.Created) by @Html.DisplayFor(model => model.BlogUser.Id)</div>
+                    <div class="text-muted fst-italic mb-2">Posted on @Html.DisplayFor(model => model.Created) by @Html.DisplayFor(model => model.BlogUser.DisplayName)</div>
                     <!-- Post categories-->
-                    @foreach(var item in Model.Tags)
+                    <div class="d-flex flex-row">
+                    @foreach(var tag in Model.Tags)
                     {
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">@item.Text</a>
+                            <a asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()" ><span class="badge bg-secondary text-decoration-none mx-1">#@tag.Text</span></a>
                     }
+                    </div>
                 </header>
                 <!-- Preview image figure-->
                 <figure class="mb-4"><img class="img-fluid rounded" src="@imageService.DecodeImage(Model.ImageData, Model.ContentType)" alt="..." /></figure>

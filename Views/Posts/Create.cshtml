@@ -57,10 +57,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <button name="Add" type="button" class="btn btn-dark btn-sm w-100">Add</button>
+                                    <button onclick="AddTag()" name="Add" type="button" class="btn btn-dark btn-sm w-100">Add</button>
                                 </div>
                                 <div class="col-6">
-                                    <button name="Delete" type="button" class="btn btn-dark btn-sm w-100">Delete</button>
+                                    <button onclick="DeleteTag()" name="Delete" type="button" class="btn btn-dark btn-sm w-100">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -89,6 +89,9 @@
 </div>
 
 @section Scripts {
+
+    <script src="~/js/custom.js"></script>
+
     <script>
         $(document).ready(function () {
             $('#summernote').summernote();

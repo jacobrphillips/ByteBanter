@@ -42,6 +42,6 @@ namespace ByteBanter.Models
         public virtual BlogUser? BlogUser { get; set; }
 
         //Blog is the parent to Post, so we initialize a collection of Posts
-        public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
+        public virtual ICollection<Post>? Posts { get; set; } = new HashSet<Post>();
     }
 }
