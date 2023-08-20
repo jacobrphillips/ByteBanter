@@ -37,19 +37,47 @@
                 </div>
                 <br />
                 <div class="form-group">
-                    <label asp-for="ReadyStatus" class="control-label"></label>
-                    <select asp-for="ReadyStatus" asp-items="@Html.GetEnumSelectList<ReadyStatus>()" class="form-control"></select>
-                    <span asp-validation-for="ReadyStatus" class="text-danger"></span>
-                </div>
-                <br />
-                <div class="form-group">
                     <label asp-for="Image" class="control-label"></label>
                     <input type="file" asp-for="Image" class="form-control" />
                     <span asp-validation-for="ImageData" class="text-danger"></span>
                 </div>
                 <br />
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <div class="row">
+                        <div class="col">
+                            <label class="control-label">Manage Tags</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control mb-3" id="TagEntry" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button name="Add" type="button" class="btn btn-dark btn-sm w-100">Add</button>
+                                </div>
+                                <div class="col-6">
+                                    <button name="Delete" type="button" class="btn btn-dark btn-sm w-100">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <select class="w-100" name="TagValues" id="TagList" multiple></select>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="ReadyStatus" class="control-label"></label>
+                    <select asp-for="ReadyStatus" asp-items="@Html.GetEnumSelectList<ReadyStatus>()" class="form-control"></select>
+                    <span asp-validation-for="ReadyStatus" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group d-grid">
+                    <input type="submit" value="Create" class="btn btn-dark" />
                 </div>
                 <br />
             </form>

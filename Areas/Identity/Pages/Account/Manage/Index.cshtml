@@ -5,11 +5,11 @@
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 <div class="container">
-    <h3>@ViewData["Title"]</h3>
     <partial name="_StatusMessage" for="StatusMessage" />
     <div class="row d-flex justify-content-center align-content-center">
         <div class="col-md-6">
             <form id="profile-form" method="post" enctype="multipart/form-data">
+                <h3 class="my-4">@ViewData["Title"]</h3>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
                     <input asp-for="Username" class="form-control" />
@@ -23,19 +23,20 @@
                 </div>
                 <br/>
                 <div class="form-group">
-                    <label>Select Image</label>
-                    <div class="custom-file">
-                        <input asp-for="Input.Image" type="file" class="form-control-file custom-file-input" accept=".png,.jpg,.bmp,.jpeg,.tiff" />
-                        <label asp-for="Input.Image" class="control-label custom-file-label"></label>
-                    </div>
+                    <label asp-for="Input.Image" class="control-label"></label>
+                    <input type="file" asp-for="Input.Image" class="form-control" />
+                    <span asp-validation-for="Input.Image" class="text-danger"></span>
                 </div>
                 <br/>
                 <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-dark">Save</button>
                 <br/>
             </form>
         </div>
-        <div class="col-md-6">
-            <img src="@Model.CurrentImage" class="img-fluid rounded-circle" width="90%"/>
+        <div class="col-md-6 mt-4 d-flex flex-column justify-content-center align-content-center">
+            <h3 class="my-4">Current Image</h3>
+            <div class="row justify-content-center align-content-center">
+                <img src="@Model.CurrentImage" class="img-fluid rounded-circle"/>
+            </div>
         </div>
     </div>
 </div>
