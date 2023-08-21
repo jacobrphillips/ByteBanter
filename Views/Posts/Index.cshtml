@@ -7,51 +7,62 @@
     ViewData["Title"] = "Post Index";
 }
 
-<div class="container">
-    <h1 class="mt-4">Index</h1>
-    <div class="row">
-        <p>
-            <a asp-action="Create">Create New</a>
-        </p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Image)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Title)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Abstract)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    var dateCreated = item.Created.ToLocalTime();
+@if (User.IsInRole("Administrator"))
+{
+    <div class="container">
+        <h1 class="mt-4">Index</h1>
+        <div class="row">
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>
-                            <img class="img-fluid" width="200px;" src="@imageService.DecodeImage(item.ImageData, item.ContentType)" />
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Abstract)
-                        </td>
-
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-slug="@item.Slug">Details</a> |
-                            <a asp-action="Delete" asp-route-slug="@item.Slug">Delete</a>
-                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Image)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Abstract)
+                        </th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var dateCreated = item.Created.ToLocalTime();
+                        <tr>
+                            <td>
+                                <img class="img-fluid" width="200px;" src="@imageService.DecodeImage(item.ImageData, item.ContentType)" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Abstract)
+                            </td>
 
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-slug="@item.Slug">Details</a> |
+                                <a asp-action="Delete" asp-route-slug="@item.Slug">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
     </div>
-</div>
+}
+else
+{
+    <div class="container">
+        <div class="row d-flex justify-content-center align-content-center">
+            <h2>You dont have permissions, sorry :(</h2>
+        </div>
+    </div>
+}

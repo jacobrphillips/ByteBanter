@@ -54,6 +54,9 @@ namespace ByteBanter
             //Register Slug Service
             builder.Services.AddScoped<ISlugService, BasicSlugService>();
 
+            //Register BlogSearch Service
+            builder.Services.AddScoped<BlogSearchService>();
+
             var app = builder.Build();
 
             // Activate your DataService

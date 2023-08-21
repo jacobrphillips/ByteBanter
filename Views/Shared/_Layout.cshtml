@@ -33,16 +33,27 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                     </li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Blogs" asp-action="Create">Create Blog</a>
+                    </li>  
+                    }
                     <partial name="_LoginPartial" />
                 </ul>
+                <div class="nav-item d-flex justify-content-end">
+                    <form asp-action="SearchIndex" asp-controller="Posts">
+                        <div class="input-group">
+                            <input type="text" name="SearchTerm" class="form-control form-control-sm" placeholder="Search Term" />
+                            <div class="input-group-append">
+                                <button class="btn btn-warning w-100 btn-sm" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </nav>
-    <div class="row" style=" background-color: darkslategray;">
-        <div class="col">
-            <h2>Hi</h2>
-        </div>
-    </div>
 
     <!--Main Body-->
     <main role="main" class="pb-3">

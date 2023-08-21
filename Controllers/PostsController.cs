@@ -11,6 +11,8 @@ using ByteBanter.Services;
 using Microsoft.AspNetCore.Identity;
 using ByteBanter.Enums;
 using X.PagedList;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ByteBanter.Controllers
 {
@@ -20,14 +22,29 @@ namespace ByteBanter.Controllers
         private readonly ISlugService _slugService;
         private readonly IImageService _imageService;
         private readonly UserManager<BlogUser> _userManager;
+        private readonly BlogSearchService _blogSearchService;
 
-        public PostsController(ApplicationDbContext context, ISlugService slugService, IImageService imageService, UserManager<BlogUser> userManager)
+        public PostsController(ApplicationDbContext context, ISlugService slugService, IImageService imageService, UserManager<BlogUser> userManager, BlogSearchService blogSearchService)
         {
             _context = context;
             _slugService = slugService;
             _imageService = imageService;
             _userManager = userManager;
+            _blogSearchService = blogSearchService;
         }
+
+
+        public async Task<IActionResult> SearchIndex(int? page, string searchTerm)
+        {
+            ViewData["SearchTerm"] = searchTerm;
+
+            var pageNumber = page ?? 1;
+            var pageSize = 6;
+
+            var posts = _blogSearchService.Search(searchTerm);
+            return View(await posts.ToPagedListAsync(pageNumber, pageSize));
+        }
+
 
         // GET: Posts
         public async Task<IActionResult> Index()
@@ -75,6 +92,7 @@ namespace ByteBanter.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
