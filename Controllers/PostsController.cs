@@ -47,6 +47,7 @@ namespace ByteBanter.Controllers
 
 
         // GET: Posts
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Posts.Include(p => p.Blog).Include(p => p.BlogUser);
@@ -82,6 +83,8 @@ namespace ByteBanter.Controllers
                 .Include(p => p.Blog)
                 .Include(p => p.BlogUser)
                 .Include(p => p.Tags)
+                .Include(p => p.Comments)
+                .ThenInclude(c => c.BlogUser)
                 .FirstOrDefaultAsync(m => m.Slug == slug);
             if (post == null)
             {
@@ -105,6 +108,7 @@ namespace ByteBanter.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,Content,ReadyStatus,Image")] Post post, List<string> tagValues)
         {
             if (ModelState.IsValid)
@@ -176,6 +180,7 @@ namespace ByteBanter.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Posts == null)
@@ -199,6 +204,7 @@ namespace ByteBanter.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,ReadyStatus")] Post post, IFormFile newImage, List<string> tagValues)
         {
             if (id != post.Id)
@@ -276,6 +282,7 @@ namespace ByteBanter.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string slug)
         {
             if (slug == null || _context.Posts == null)
@@ -298,6 +305,7 @@ namespace ByteBanter.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Posts == null)

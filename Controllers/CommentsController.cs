@@ -7,25 +7,35 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ByteBanter.Data;
 using ByteBanter.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Hosting;
+using ByteBanter.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ByteBanter.Controllers
 {
     public class CommentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<BlogUser> _userManager;
+        private readonly ISlugService _slugService;
 
-        public CommentsController(ApplicationDbContext context)
+        public CommentsController(ApplicationDbContext context, UserManager<BlogUser> userManager, ISlugService slugService)
         {
             _context = context;
+            _userManager = userManager;
+            _slugService = slugService;
         }
 
         // GET: Comments
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> OriginalIndex()
         {
             var originalComments = await _context.Comments.ToListAsync();
             return View("Index", originalComments);
         }
 
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> ModeratedIndex()
         {
             var moderatedComments = await _context.Comments.Where(c => c.Moderated != null).ToListAsync();
@@ -38,6 +48,7 @@ namespace ByteBanter.Controllers
         //}
 
         //GET: Comments
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Comments.Include(c => c.BlogUser).Include(c => c.Moderator).Include(c => c.Post);
@@ -58,19 +69,22 @@ namespace ByteBanter.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PostId,BlogUserId,ModeratorId,Body,Created,Updated,Moderated,Deleted,ModeratedBody,ModerationType")] Comment comment)
+        public async Task<IActionResult> Create([Bind("PostId,Body")] Comment comment, string slug)
         {
             if (ModelState.IsValid)
             {
+                comment.BlogUserId = _userManager.GetUserId(User);
+                comment.Created = DateTime.UtcNow;
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Posts", new { slug }, "commentSection");
             }
 
             return View(comment);
         }
 
         // GET: Comments/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Comments == null)
@@ -94,7 +108,7 @@ namespace ByteBanter.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PostId,BlogUserId,ModeratorId,Body,Created,Updated,Moderated,Deleted,ModeratedBody,ModerationType")] Comment comment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Body")] Comment comment)
         {
             if (id != comment.Id)
             {
@@ -103,9 +117,11 @@ namespace ByteBanter.Controllers
 
             if (ModelState.IsValid)
             {
+                var newComment = await _context.Comments.Include(c => c.Post).FirstOrDefaultAsync(c => c.Id == comment.Id);
                 try
                 {
-                    _context.Update(comment);
+                    newComment.Body = comment.Body;
+                    newComment.Updated = DateTime.UtcNow;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -119,7 +135,7 @@ namespace ByteBanter.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Posts", new { slug = newComment.Post.Slug}, "commentSection");
             }
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
             ViewData["ModeratorId"] = new SelectList(_context.Users, "Id", "Id", comment.ModeratorId);
@@ -128,6 +144,7 @@ namespace ByteBanter.Controllers
         }
 
         // GET: Comments/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Comments == null)
@@ -151,6 +168,7 @@ namespace ByteBanter.Controllers
         // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Comments == null)
