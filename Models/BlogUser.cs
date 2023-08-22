@@ -35,7 +35,7 @@ namespace ByteBanter.Models
         {
             get
             {
-                return $"{FullName} {LastName}";
+                return $"{FirstName} {LastName}";
             }
         }
 
