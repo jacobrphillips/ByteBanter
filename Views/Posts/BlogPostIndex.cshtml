@@ -29,7 +29,7 @@
             <div class="col-md-6 mt-2">
                 <div class="card mb-4">
                     <img class="card-img-top"
-                         src="@_imageService.DecodeImage(post.ImageData, post.ContentType)" alt="..." />
+                         src="@_imageService.DecodeImage(post.ImageData, post.ContentType)" alt="..." style="height: 300px;" />
                     <div class="card-body d-grid gap-1 text-center">
                         <h2 class="card-title h4">Post @post.Title</h2>
                         <p class="card-text">
@@ -49,22 +49,23 @@
 
         <hr />
 
-        <div class="row">
-            <div class="col h5">
-                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        <div class="row mt-5">
+            <!--Add Paging Controls here-->
+            <div class="row">
+                <div class="col h5 d-flex justify-content-center align-content-center">
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                @Html.PagedListPager(Model, page => Url.Action("BlogPostIndex", new { id = Model.FirstOrDefault().BlogId, page = page}),
-                new PagedListRenderOptionsBase
-                {
+            <div class="row">
+                <div class="col d-flex justify-content-center align-content-center">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+                    new PagedListRenderOptionsBase
+                    {
                     LiElementClasses = new string[] {"page-item"},
                     PageClasses = new string[] {"page-link"}
-                })
+                    })
+                </div>
             </div>
         </div>
-
     </div>
 </div>

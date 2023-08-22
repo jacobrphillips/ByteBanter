@@ -16,7 +16,7 @@
 }
 
 <!-- Page header with logo and tagline-->
-<header class="py-5 bg-light border-bottom mb-4">
+<header class="py-5 bg-light border-bottom h-75" style="margin-bottom: 100px;">
     <div class="container">
         <div class="text-center my-5">
             <h1 class="fw-bolder">Welcome to Blog Home!</h1>
@@ -36,7 +36,7 @@
                              src="@_imageService.DecodeImage(blog.ImageData, blog.ContentType)" style="height: 300px;" alt="..." />
                         <div class="card-body d-grid gap-1 text-center">
                             <div class="small text-muted"><strong>Created</strong>: @blog.Created.ToString("MMM dd, yyyy")</div>
-                            <h2 class="card-title h4">Post @blog.Name</h2>
+                            <h2 class="card-title h4">@blog.Name</h2>
                             <p class="card-text">
                                 @blog.Description
                             </p>

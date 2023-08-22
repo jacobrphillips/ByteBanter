@@ -1,13 +1,14 @@
 ﻿@using ByteBanter.Models
 @using ByteBanter.Services
 @using ByteBanter.Enums
+@using Microsoft.AspNetCore.Identity;
 @using X.PagedList
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
 
 
-@inject IImageService imageService
-
+@inject IImageService _imageService
+@inject UserManager<BlogUser> _userManager
 @model IPagedList<Post>
 
 @{
@@ -15,47 +16,55 @@
 }
 
 <div class="row">
+    <!-- Blog post-->
     @foreach (var post in Model)
     {
-        <div class="col-sm-2 col-lg-4 mt-3">
-            <div class="card border-dark">
-                <div class="card-body text-center">
-                    <div class="bg-warning">
-                        <hr class="card-hr" />
-                        <h5 class="card-title">@post.Title</h5>
-                        <hr class="card-hr" />
-                    </div>
-                    <div>
-                        <p class="card-text">@post.Abstract</p>
-                    </div>
+        //Is the logged in user the Author of this post??
+        var isAuthor = false;
+        if (User.Identity.IsAuthenticated)
+        {
+            isAuthor = (post.BlogUserId == _userManager.GetUserId(User));
+        }
 
-                    <br />
-                    <div class="text-center">
-                        <a class="btn btn-dark btn-sm btn-block mb-2" asp-action="Details" asp-controller="Posts" asp-route-slug="@post.Slug">Read More</a>
-                    </div>
+        <div class="col-md-6 mt-2">
+            <div class="card mb-4">
+                <img class="card-img-top"
+                     src="@_imageService.DecodeImage(post.ImageData, post.ContentType)" alt="..." style="height: 300px;" />
+                <div class="card-body d-grid gap-1 text-center">
+                    <h2 class="card-title h4">Post @post.Title</h2>
+                    <p class="card-text">
+                        @post.Abstract
+                    </p>
 
+                    <a class="btn btn-dark btn-sm mb-2" asp-action="Details" asp-controller="Posts" asp-route-slug="@post.Slug">Read More</a>
+
+                    @if (User.IsInRole(BlogRole.Administrator.ToString()) || isAuthor)
+                    {
+                        <a class="btn btn-dark" asp-action="Edit" asp-controller="Posts" asp-route-id="@post.Id">Edit Post</a>
+                    }
                 </div>
-                <img class="card-img-bottom img-fluid" src="@imageService.DecodeImage(post.ImageData,  post.ContentType)" />
             </div>
-
         </div>
     }
 </div>
 
 <hr />
 
-<div class="row">
-    <div class="col h5">
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<div class="row mt-5">
+    <!--Add Paging Controls here-->
+    <div class="row">
+        <div class="col h5 d-flex justify-content-center align-content-center">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col">
-        @Html.PagedListPager(Model, page => Url.Action("SearchIndex", new { page = page, searchTerm = ViewData["SearchTerm"] }),
-        new PagedListRenderOptionsBase
-        {
-        LiElementClasses = new string[] { "page-item" },
-        PageClasses = new string[] { "page-link" }
-        })
+    <div class="row">
+        <div class="col d-flex justify-content-center align-content-center">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+            new PagedListRenderOptionsBase
+            {
+            LiElementClasses = new string[] {"page-item"},
+            PageClasses = new string[] {"page-link"}
+            })
+        </div>
     </div>
 </div>
