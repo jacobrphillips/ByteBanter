@@ -15,7 +15,16 @@
     ViewData["Title"] = "Search Results";
 }
 
-<div class="row">
+<!-- Page header with logo and tagline-->
+<header class="indexheader py-5 h-75" style="margin-bottom: 100px;">
+    <div class="container">
+        <div class="text-left my-5">
+            <h1 class="fw-bolder">Welcome to your Search Results!</h1>
+            <p class="lead mb-0">Browse below to see your results!</p>
+        </div>
+    </div>
+</header>
+<div class="row d-flex flex-row justify-content-center align-items-center">
     <!-- Blog post-->
     @foreach (var post in Model)
     {
@@ -26,10 +35,10 @@
             isAuthor = (post.BlogUserId == _userManager.GetUserId(User));
         }
 
-        <div class="col-md-6 mt-2">
+        <div class="col-md-6 mt-2" style="width: 350px;">
             <div class="card mb-4">
                 <img class="card-img-top"
-                     src="@_imageService.DecodeImage(post.ImageData, post.ContentType)" alt="..." style="height: 300px;" />
+                     src="@_imageService.DecodeImage(post.ImageData, post.ContentType)" alt="..."  />
                 <div class="card-body d-grid gap-1 text-center">
                     <h2 class="card-title h4">Post @post.Title</h2>
                     <p class="card-text">

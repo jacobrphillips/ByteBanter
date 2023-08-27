@@ -16,66 +16,68 @@
 }
 
 <!-- Page header with logo and tagline-->
-<header class="py-5 bg-light border-bottom h-75" style="margin-bottom: 100px;">
+<header class="indexheader py-5 h-75" style="margin-bottom: 100px;">
     <div class="container">
-        <div class="text-center my-5">
-            <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-            <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+        <div class="text-left my-5">
+            <h1 class="fw-bolder">Welcome to my Website!</h1>
+            <p class="lead mb-0">Browse below to see my latest Blogs & Posts!</p>
         </div>
     </div>
 </header>
-<div class="container">
-    <div class="row">
-        <div class="row">
+<div class="container d-flex flex-column">
+    <div class="row  d-flex flex-column">
+        <div class="row  d-flex flex-column">
             <!-- Blog post-->
             @foreach (var blog in Model)
             {
-                <div class="col-md-6 mt-2">
-                    <div class="card mb-4">
-                        <img class="card-img-top"
-                             src="@_imageService.DecodeImage(blog.ImageData, blog.ContentType)" style="height: 300px;" alt="..." />
-                        <div class="card-body d-grid gap-1 text-center">
-                            <div class="small text-muted"><strong>Created</strong>: @blog.Created.ToString("MMM dd, yyyy")</div>
-                            <h2 class="card-title h4">@blog.Name</h2>
-                            <p class="card-text">
-                                @blog.Description
-                            </p>
-                            <a class="btn btn-dark" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@blog.Id">Read Posts</a>
-                            @if (User.IsInRole(BlogRole.Administrator.ToString()))
-                            {
-                                <a class="btn btn-dark" asp-action="Create" asp-controller="Posts" asp-route-id="@blog.Id">Create Post</a>
-                            }
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <img class="img-fluid rounded-start"
+                                 src="@_imageService.DecodeImage(blog.ImageData, blog.ContentType)" alt="..." />
+                        </div>
+                        <div class="col-md-6 d-flex">
+                            <div class="card-body text-center d-flex flex-column justify-content-center align-content-center">
+                                <div class="small text-muted"><strong>Created</strong>: @blog.Created.ToString("MMM dd, yyyy")</div>
+                                <h2 class="card-title h4">@blog.Name</h2>
+                                <p class="card-text">
+                                    @blog.Description
+                                </p>
+                                <a class="btn btn-dark" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@blog.Id">Read Posts</a>
+                                @if (User.IsInRole(BlogRole.Administrator.ToString()))
+                                {
+                                    <a class="btn btn-dark" asp-action="Create" asp-controller="Posts" asp-route-id="@blog.Id">Create Post</a>
+                                }
 
-                            @if (User.IsInRole(BlogRole.Administrator.ToString()))
-                            {
-                                <a class="btn btn-dark" asp-action="Edit" asp-controller="Blogs" asp-route-id="@blog.Id">Edit Blog</a>
-                            }
-
+                                @if (User.IsInRole(BlogRole.Administrator.ToString()))
+                                {
+                                    <a class="btn btn-dark" asp-action="Edit" asp-controller="Blogs" asp-route-id="@blog.Id">Edit Blog</a>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
 
             }
-        </div>
 
-                <div class="row mt-5">
-                    <!--Add Paging Controls here-->
-                    <div class="row">
-                        <div class="col h5 d-flex justify-content-center align-content-center">
-                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                        </div>
+            <div class="row mt-5">
+                <!--Add Paging Controls here-->
+                <div class="row">
+                    <div class="col h5 d-flex justify-content-center align-content-center">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
                     </div>
-                    <div class="row">
-                        <div class="col d-flex justify-content-center align-content-center">
-                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
-                            new PagedListRenderOptionsBase
-                            {
-                            LiElementClasses = new string[] {"page-item"},
-                            PageClasses = new string[] {"page-link"}
-                            })
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-center align-content-center">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+                        new PagedListRenderOptionsBase
+                        {
+                        LiElementClasses = new string[] {"page-item"},
+                        PageClasses = new string[] {"page-link"}
+                        })
                     </div>
                 </div>
             </div>
         </div>
-
+    </div>
+</div>

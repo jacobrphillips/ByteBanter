@@ -1,1 +1,81 @@
-﻿
+﻿.navbar, footer{
+    background-color: #212020;
+}
+
+.navbar-brand{
+    margin-right: 10px;
+}
+
+.nav-link {
+    color: #b5ae91;
+}
+
+.nav-link:hover {
+    color: #dbd2ab;
+}
+
+.searchbar {
+    background-color: transparent;
+}
+
+.searchbtn {
+    color: black;
+    background-color: #b5ae91;
+}
+
+.searchbtn:hover {
+    color: black;
+    background-color: #dbd2ab;
+}
+
+.searchbtn:active {
+    color: grey;
+    background-color: #dbd2ab;
+}
+
+.note-editable {
+    background-color: lightgrey;
+}
+
+.btn {
+    color: black;
+    background-color: #b5ae91;
+}
+
+.btn:hover {
+    color: black;
+    background-color: #dbd2ab;
+}
+
+.card {
+    background-color: #212020;
+}
+
+.page-item.active .page-link {
+    color: black;
+    background-color: #dbd2ab;
+    border-color: black;
+}
+
+.page-item .page-link {
+    color: #dbd2ab;
+    background-color: #212020;
+    border-color: #dbd2ab;
+}
+
+.indexheader {
+    background-image: url(../images/background-banner.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+    color: #edc51b;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #d6b941;
+        text-decoration: none;
+    }
