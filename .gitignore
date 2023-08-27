@@ -13,6 +13,8 @@
 # App settings
 appsettings.json
 
+# Data Services
+Services/DataService.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
