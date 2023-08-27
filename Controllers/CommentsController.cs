@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ByteBanter.Data;
-using ByteBanter.Models;
+using YoutubeBlog.Data;
+using YoutubeBlog.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
-using ByteBanter.Services;
+using YoutubeBlog.Services;
 using Microsoft.AspNetCore.Authorization;
 
-namespace ByteBanter.Controllers
+namespace YoutubeBlog.Controllers
 {
     public class CommentsController : Controller
     {

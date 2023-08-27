@@ -1,10 +1,10 @@
-﻿using ByteBanter.ViewModels;
+﻿using YoutubeBlog.ViewModels;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 
-namespace ByteBanter.Services
+namespace YoutubeBlog.Services
 {
     public class EmailService : IBlogEmailSender
     {

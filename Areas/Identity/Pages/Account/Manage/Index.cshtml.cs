@@ -6,13 +6,13 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using ByteBanter.Models;
-using ByteBanter.Services;
+using YoutubeBlog.Models;
+using YoutubeBlog.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ByteBanter.Areas.Identity.Pages.Account.Manage
+namespace YoutubeBlog.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {

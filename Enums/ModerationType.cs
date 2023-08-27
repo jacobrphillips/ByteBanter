@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ByteBanter.Enums
+namespace YoutubeBlog.Enums
 {
     public enum ModerationType
     {

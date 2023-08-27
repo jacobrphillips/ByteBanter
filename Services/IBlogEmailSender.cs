@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 
-namespace ByteBanter.Services
+namespace YoutubeBlog.Services
 {
     public interface IBlogEmailSender : IEmailSender
     {

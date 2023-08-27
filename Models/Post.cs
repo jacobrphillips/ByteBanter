@@ -1,9 +1,9 @@
-﻿using ByteBanter.Enums;
+﻿using YoutubeBlog.Enums;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ByteBanter.Models
+namespace YoutubeBlog.Models
 {
     public class Post
     {

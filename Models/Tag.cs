@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace ByteBanter.Models
+namespace YoutubeBlog.Models
 {
     public class Tag
     {

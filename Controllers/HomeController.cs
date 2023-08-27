@@ -1,13 +1,13 @@
-﻿using ByteBanter.Data;
-using ByteBanter.Models;
-using ByteBanter.Services;
-using ByteBanter.ViewModels;
+﻿using YoutubeBlog.Data;
+using YoutubeBlog.Models;
+using YoutubeBlog.Services;
+using YoutubeBlog.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using X.PagedList;
 
-namespace ByteBanter.Controllers
+namespace YoutubeBlog.Controllers
 {
     public class HomeController : Controller
     {

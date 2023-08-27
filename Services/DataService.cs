@@ -1,10 +1,10 @@
-﻿using ByteBanter.Data;
-using ByteBanter.Enums;
-using ByteBanter.Models;
+﻿using YoutubeBlog.Data;
+using YoutubeBlog.Enums;
+using YoutubeBlog.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace ByteBanter.Services
+namespace YoutubeBlog.Services
 {
     public class DataService
     {

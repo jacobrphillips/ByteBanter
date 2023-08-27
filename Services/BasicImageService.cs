@@ -1,4 +1,4 @@
-﻿namespace ByteBanter.Services
+﻿namespace YoutubeBlog.Services
 {
     public class BasicImageService : IImageService
     {

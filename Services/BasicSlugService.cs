@@ -1,7 +1,7 @@
-﻿using ByteBanter.Data;
+﻿using YoutubeBlog.Data;
 using System.Linq;
 using System.Text;
-using ByteBanter.Services;
+using YoutubeBlog.Services;
 
 namespace TheBlogProject.Services
 {

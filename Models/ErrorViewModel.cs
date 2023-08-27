@@ -1,4 +1,4 @@
-namespace ByteBanter.Models
+namespace YoutubeBlog.Models
 {
     public class ErrorViewModel
     {

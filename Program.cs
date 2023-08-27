@@ -1,13 +1,13 @@
-using ByteBanter.Data;
-using ByteBanter.Models;
-using ByteBanter.Services;
-using ByteBanter.ViewModels;
+using YoutubeBlog.Data;
+using YoutubeBlog.Models;
+using YoutubeBlog.Services;
+using YoutubeBlog.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Build.Execution;
 using Microsoft.EntityFrameworkCore;
 using TheBlogProject.Services;
 
-namespace ByteBanter
+namespace YoutubeBlog
 {
     public class Program
     {

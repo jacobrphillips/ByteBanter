@@ -1,4 +1,4 @@
-﻿namespace ByteBanter.ViewModels
+﻿namespace YoutubeBlog.ViewModels
 {
     public class MailSettings
     {

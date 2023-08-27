@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ByteBanter.Data;
-using ByteBanter.Models;
-using ByteBanter.Services;
+using YoutubeBlog.Data;
+using YoutubeBlog.Models;
+using YoutubeBlog.Services;
 using Microsoft.AspNetCore.Identity;
-using ByteBanter.Enums;
+using YoutubeBlog.Enums;
 using X.PagedList;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 
-namespace ByteBanter.Controllers
+namespace YoutubeBlog.Controllers
 {
     public class PostsController : Controller
     {

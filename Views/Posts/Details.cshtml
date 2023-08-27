@@ -1,11 +1,11 @@
-﻿@using ByteBanter.Enums;
-@using ByteBanter.Services;
+﻿@using YoutubeBlog.Enums;
+@using YoutubeBlog.Services;
 @using Microsoft.AspNetCore.Identity;
 
 @inject IImageService imageService
 @inject UserManager<BlogUser> userManager
 
-@model ByteBanter.Models.Post
+@model YoutubeBlog.Models.Post
 
 @{
     ViewData["Title"] = @Html.DisplayFor(model => model.Title);

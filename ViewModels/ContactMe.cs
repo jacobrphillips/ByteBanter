@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ByteBanter.ViewModels
+namespace YoutubeBlog.ViewModels
 {
     public class ContactMe
     {

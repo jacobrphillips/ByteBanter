@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-ByteBanter-af36f11f-d885-4349-9e44-06d98651f925</UserSecretsId>
+    <UserSecretsId>aspnet-YoutubeBlog-af36f11f-d885-4349-9e44-06d98651f925</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

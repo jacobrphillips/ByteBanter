@@ -1,8 +1,8 @@
-﻿using ByteBanter.Models;
+﻿using YoutubeBlog.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ByteBanter.Data
+namespace YoutubeBlog.Data
 {
     public class ApplicationDbContext : IdentityDbContext<BlogUser>
     {
