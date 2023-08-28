@@ -26,7 +26,8 @@
                     <div class="d-flex flex-row">
                         @foreach (var tag in Model.Tags)
                         {
-                            <a asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()"><span class="badge bg-secondary text-decoration-none mx-1">#@tag.Text</span></a>
+                            @* <a asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()"></a> *@
+                            <span class="badge bg-secondary text-decoration-none mx-1">#@tag.Text</span>
                         }
                     </div>
                 </header>
@@ -34,7 +35,7 @@
                 <figure class="mb-4"><img class="img-fluid rounded" src="@imageService.DecodeImage(Model.ImageData, Model.ContentType)" alt="..." /></figure>
                 <!-- Post content-->
                 <abstract>@Html.Raw(Model.Abstract)</abstract>
-                <section class="mb-5">
+                <section class="mt-5 mb-5">
                     @Html.Raw(Model.Content)
                 </section>
             </article>
