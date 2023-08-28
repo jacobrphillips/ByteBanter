@@ -21,7 +21,7 @@
                     <!-- Post title-->
                     <h1 class="fw-bolder mb-1">@Html.DisplayFor(model => model.Title)</h1>
                     <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">Posted on @Html.DisplayFor(model => model.Created) by @Html.DisplayFor(model => model.BlogUser.DisplayName)</div>
+                    <div class="fst-italic mb-2">Posted on @Html.DisplayFor(model => model.Created) by @Html.DisplayFor(model => model.BlogUser.DisplayName)</div>
                     <!-- Post categories-->
                     <div class="d-flex flex-row">
                         @foreach (var tag in Model.Tags)
@@ -40,7 +40,7 @@
             </article>
             <!-- Comments section-->
             <section class="mb-5" id="commentSection">
-                <div class="card bg-light">
+                <div class="card">
                     <div class="card-body">
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -50,7 +50,7 @@
                                 @Html.Hidden("Slug", Model.Slug)
                                 <div class="form-group">
                                     <label class="h6 control-label">Add Comment</label>
-                                    <textarea name="body" class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
+                                    <textarea name="body" class="form-control bg-dark text-white" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
                                 </div>
                                 <button type="Submit" class="btn btn-dark w-100 mt-4 btn-sm">Submit</button>
                             </form>
@@ -234,3 +234,12 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+    $(document).ready(function() {
+        var iframe = $('.note-video-clip');
+        iframe.css('width', '100%');
+    });
+</script>
+}
