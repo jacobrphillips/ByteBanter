@@ -3,7 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - YoutubeBlog</title>
+    <title>@ViewData["Title"] - jacobrphillips</title>
+
+    <link rel="icon" href="~/images/JP-LOGO.png" sizes="32x32">
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/YoutubeBlog.styles.css" asp-append-version="true" />
@@ -14,6 +17,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
@@ -61,8 +67,48 @@
     </main>
 
     <!-- Footer-->
-    <footer class="py-5 mt-5">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+    <!-- === Footer Section === -->
+    <footer class="mt-auto py-3">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-lg-3 gy-2">
+                <div class="col order-last order-lg-first text-light d-flex align-items-center justify-content-left">
+                    <div style="font-size: small;">
+                        <span class="text-muted">&copy;2023</span> Jacob Phillips |
+                        jacobrphillipsdev@gmail.com
+                        <div style="font-size: small;">
+                            Made with C#/.NET and ❤️
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-center justify-content-start justify-content-lg-center">
+                    <img src="~/images/JP-LOGO.png" alt="Jacob Phillips Logo" height="55" />
+                </div>
+                <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
+                    <div class="row">
+                        <div class="col social">
+                            <a href="https://www.jacobrphillips.dev" target="_blank" style="">
+                                <i class="fa-solid fa-globe fa-2x"></i>
+                            </a>
+                        </div>
+                        <div class="col social">
+                            <a href="https://www.linkedin.com/in/jacobphillips-dev/" target="_blank">
+                                <i class="fab fa-linkedin fa-2x"></i>
+                            </a>
+                        </div>
+                        <div class="col social">
+                            <a href="https://github.com/jacobrphillips" target="_blank">
+                                <i class="fab fa-github fa-2x"></i>
+                            </a>
+                        </div>
+                        <div class="col social">
+                            <a href="@Html.Raw("https://www.youtube.com/@jacobrphillipsdev")" target="_blank">
+                                <i class="fab fa-youtube fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- include libraries(jQuery, bootstrap) -->

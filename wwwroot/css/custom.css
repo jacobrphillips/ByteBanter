@@ -75,7 +75,7 @@ a {
     text-decoration: none;
 }
 
-    a:hover {
-        color: #d6b941;
-        text-decoration: none;
-    }
+a:hover {
+    color: #d6b941;
+    text-decoration: none;
+ }
