@@ -11,10 +11,10 @@
 *.sln.docstates
 
 # App settings
-appsettings.json
+# appsettings.json
 
 # Data Services
-Services/DataService.cs
+# Services/DataService.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
