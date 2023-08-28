@@ -11,22 +11,16 @@
             <form id="profile-form" method="post" enctype="multipart/form-data">
                 <h3 class="my-4">@ViewData["Title"]</h3>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating">
-                    <input asp-for="Username" class="form-control" />
                     <label asp-for="Username" class="form-label"></label>
-                </div>
+                    <input asp-for="Username" class="form-control" />
                 <br/>
-                <div class="form-floating">
+                   @*  <label asp-for="Input.PhoneNumber" class="form-label"></label>
                     <input asp-for="Input.PhoneNumber" class="form-control" />
-                    <label asp-for="Input.PhoneNumber" class="form-label"></label>
                     <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-                </div>
-                <br/>
-                <div class="form-group">
+                <br/> *@
                     <label asp-for="Input.Image" class="control-label"></label>
                     <input type="file" asp-for="Input.Image" class="form-control" />
                     <span asp-validation-for="Input.Image" class="text-danger"></span>
-                </div>
                 <br/>
                 <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-dark">Save</button>
                 <br/>

@@ -7,9 +7,9 @@
 }
 
 <div class="container">
-    <partial name="_StatusMessage" for="StatusMessage" />
-    <h3>@ViewData["Title"]</h3>
     <div class="row d-flex justify-content-center align-content-center">
+    <h4 >@ViewData["Title"]</h4>
+    <partial name="_StatusMessage" for="StatusMessage" />
         @{
             var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
             @if (consentFeature?.CanTrack ?? true)
@@ -53,6 +53,7 @@
                 <h4>Authenticator app</h4>
                 @if (!Model.HasAuthenticator)
                 {
+                    <br/>
                     <div class="col-6">
                     <button id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-dark w-100">Add authenticator app</button>
                     </div>
