@@ -3,6 +3,7 @@ using YoutubeBlog.Models;
 using YoutubeBlog.Services;
 using YoutubeBlog.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Build.Execution;
 using Microsoft.EntityFrameworkCore;
 using TheBlogProject.Services;
@@ -20,7 +21,7 @@ namespace YoutubeBlog
 
             //USES POSTGRESQL
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseNpgsql(connectionString));
+               options.UseNpgsql(ConnectionService.GetConnectionString(builder.Configuration)));
 
                 //        builder.Services.AddDefaultIdentity<BlogUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 //.AddEntityFrameworkStores<ApplicationDbContext>();
