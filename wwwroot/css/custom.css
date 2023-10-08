@@ -7,11 +7,11 @@
 }
 
 .nav-link {
-    color: #b5ae91;
+    color: #e5e5e5;
 }
 
 .nav-link:hover {
-    color: #dbd2ab;
+    color: #fcfcfc;
 }
 
 .searchbar {
@@ -20,17 +20,17 @@
 
 .searchbtn {
     color: black;
-    background-color: #b5ae91;
+    background-color: #e5e5e5;
 }
 
 .searchbtn:hover {
     color: black;
-    background-color: #dbd2ab;
+    background-color: #fcfcfc;
 }
 
 .searchbtn:active {
     color: grey;
-    background-color: #dbd2ab;
+    background-color: #c1c1c1;
 }
 
 .note-editable {
@@ -39,12 +39,12 @@
 
 .btn {
     color: black;
-    background-color: #b5ae91;
+    background-color: #e5e5e5;
 }
 
 .btn:hover {
     color: black;
-    background-color: #dbd2ab;
+    background-color: #fcfcfc;
 }
 
 .card {
@@ -53,29 +53,29 @@
 
 .page-item.active .page-link {
     color: black;
-    background-color: #dbd2ab;
+    background-color: #fcfcfc;
     border-color: black;
 }
 
 .page-item .page-link {
-    color: #dbd2ab;
-    background-color: #212020;
-    border-color: #dbd2ab;
+    color: #e5e5e5;
+    background-color: #282828;
+    border-color: #fcfcfc;
 }
 
 .indexheader {
-    background-image: url(../images/background-banner.png);
+    background-image: url(../images/website-background-banner.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 a {
-    color: #edc51b;
+    color: #e5e5e5;
     text-decoration: none;
 }
 
 a:hover {
-    color: #d6b941;
+    color: #fcfcfc;
     text-decoration: none;
  }
